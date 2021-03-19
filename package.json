@@ -1,18 +1,29 @@
 {
-  "name": "dears-pronote",
+  "name": "dears-launcher",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "azuriom-auth": "^0.1.1",
+    "child_process": "^1.0.2",
+    "discord-rpc": "^3.1.4",
+    "electron-installer-dmg": "^3.0.0",
+    "electron-installer-windows": "^3.0.0",
+    "electron-packager": "^15.1.0",
     "fs": "0.0.1-security",
-    "pronote-api": "^2.1.3"
+    "minecraft-launcher-core": "^3.16.1",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
-    "electron": "^9.3.0"
+    "electron": "^9.4.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-packager . DEARS --platform=darwin --icon=./assets/icons/icon.icns",
+    "linux": "electron-packager . DEARS --platform=linux --icon=./assets/icons/icon.icns",
+    "win": "electron-packager . DEARS --platform=win32 --icon=./assets/icons/icon.icns",
+    "dmg": "electron-installer-dmg ./DEARS-darwin-x64/DEARS.app DEARS --icon=./assets/icons/icon.icns --title=DEARS --background=./assets/images/background.png --out=./apps",
+    "sign": "electron-packager . \"My App\" --platform=darwin --arch=x64 --app-version=1.0.0 --app-bundle-id=\"com.mysite.myapp\" --app-version=\"1.0.0\" --build-version=\"1.0.100\" --osx-sign"
   },
   "author": "Corentin de Maupeou d'Ableiges de Monbail",
   "license": "ISC"

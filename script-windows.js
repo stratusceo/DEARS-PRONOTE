@@ -1,5 +1,4 @@
 const Assets = require('./Assets')
-const path = require('path')
 
 const handleSetupOptions = async () => {
     return new Promise(resolve => {
@@ -197,11 +196,7 @@ const handleInitStyle = async () => {
                             console.log('networks updated')
                         }
 
-                        /**
-                         * 
-                         * Setup settings
-                         * 
-                         */
+                        // Setup settings
 
                         if (jsonConfig.datas.settings) {
                             const container = document.createElement('div')
@@ -217,27 +212,27 @@ const handleInitStyle = async () => {
                                 break
 
                                 case 1:
-                                    if (containerNetworks && containerNetworks.style.transform.includes('translateX') && (!containerNetworks.style.transform.includes('translateY')))
+                                    if (containerNetworks && containerNetworks.style.transform.includes('translateX') && (!containerNetworks.style.transform.includes('translateY'))) {
                                         container.style.transform = 'translateX(820px) translateY(40px)'
-                                    else
+                                    } else {
                                         container.style.transform = 'translateX(820px)'
-                                
+                                    }
                                 break
 
                                 case 2:
-                                    if (containerNetworks && (!containerNetworks.style.transform.includes('translateX')) && containerNetworks.style.transform.includes('translateY'))
+                                    if (containerNetworks && (!containerNetworks.style.transform.includes('translateX')) && containerNetworks.style.transform.includes('translateY')) {
                                         container.style.transform = 'translateY(455px)'
-                                    else
+                                    } else {
                                         container.style.transform = 'translateY(495px)'
-                                
+                                    }
                                 break
 
                                 case 3:
-                                    if (containerNetworks && containerNetworks.style.transform.includes('translateX') && containerNetworks.style.transform.includes('translateY'))
+                                    if (containerNetworks && containerNetworks.style.transform.includes('translateX') && containerNetworks.style.transform.includes('translateY')) {
                                         container.style.transform = 'translateX(820px) translateY(455px)'
-                                    else
+                                    } else {
                                         container.style.transform = 'translateX(820px) translateY(495px)'
-                                
+                                    }
                                 break
                             
                                 default:
@@ -248,6 +243,7 @@ const handleInitStyle = async () => {
 
                             const shell = require('electron').shell
 
+                            element.src = 'https://cdn.discordapp.com/attachments/793382333339271178/814144636297281579/mechanical-gears--2.png'
                             element.onclick = () => {
                                 const remote = require('electron').remote
                                 const BrowserWindow = remote.BrowserWindow
@@ -259,11 +255,9 @@ const handleInitStyle = async () => {
                                         nodeIntegration: true
                                     }
                                 })
-                                
+                              
                                 window.loadFile('./settings.html')
                             }
-
-                            element.src = 'https://cdn.discordapp.com/attachments/793382333339271178/814144636297281579/mechanical-gears--2.png'
                             element.classList.add('settings-element')
                             element.alt = 'Settings icon'
                             element.draggable = false
@@ -444,22 +438,22 @@ handleInitStyle().then(async data => {
                 })
             }
 
-            const handleLaunch = e => {
+            const handleLaunch = response => {
                 const Assets = require('./Assets')
                 const launcher = new Client()
 
                 if (data.datas.server && data.datas.server.host !== '') {
                     const options = {
                         clientPackage: data.datas.client,
-                        forge: path.join(__dirname, `tmp/assets/files/forge/forge-${data.datas.version}.jar`),
+                        forge: `${__dirname}/tmp/assets/files/forge/forge-${data.datas.version}.jar`,
                         authorization: {
-                            access_token: e.access_token,
-                            client_token: e.client_token,
-                            uuid: e.uuid,
-                            name: e.name,
-                            user_properties: e.user_properties
+                            access_token: response.access_token,
+                            client_token: response.client_token,
+                            uuid: response.uuid,
+                            name: response.name,
+                            user_properties: response.user_properties
                         },
-                        root: `tmp/minecraft-${data.datas.date}`,
+                        root: `${__dirname}/tmp/minecraft-${data.datas.date}`,
                         version: {
                             number: data.datas.version,
                             type: `${Assets.is_release_version ? 'release' : 'snapshot'}`
@@ -472,21 +466,21 @@ handleInitStyle().then(async data => {
                             host: data.datas.server.host
                         }
                     }
-
+    
                     launcher.launch(options)
                     showMCLCInformations(launcher, options)
                 } else {
                     const options = {
                         clientPackage: data.datas.client,
-                        forge: path.join(__dirname, `tmp/assets/files/forge/forge-${data.datas.version}.jar`),
+                        forge: `${__dirname}/tmp/assets/files/forge/forge-${data.datas.version}.jar`,
                         authorization: {
-                            access_token: e.access_token,
-                            client_token: e.client_token,
-                            uuid: e.uuid,
-                            name: e.name,
-                            user_properties: e.user_properties
+                            access_token: response.access_token,
+                            client_token: response.client_token,
+                            uuid: response.uuid,
+                            name: response.name,
+                            user_properties: response.user_properties
                         },
-                        root: `tmp/minecraft-${data.datas.date}`,
+                        root: `${__dirname}/tmp/minecraft-${data.datas.date}`,
                         version: {
                             number: data.datas.version,
                             type: `${Assets.is_release_version ? 'release' : 'snapshot'}`
@@ -496,7 +490,7 @@ handleInitStyle().then(async data => {
                             max: `${localStorage.getItem('max_ram_value') ? localStorage.getItem('max_ram_value') : data.datas.max_ram}G`
                         }
                     }
-
+    
                     launcher.launch(options)
                     showMCLCInformations(launcher, options)
                 }

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Préférences</title>
+</head>
+<body>
+    <div>
+        <h1>RAM</h1>
+        <p id="infos"></p>
+
+        <div class="row">
+            <div>
+                <span>Min. (Go)</span>
+                <input type="number" value="3" placeholder="RAM Min." id="min_ram_value">
+            </div>
+            
+            <div>
+                <span>Max. (Go)</span>
+                <input type="number" value="4" placeholder="RAM Max." id="max_ram_value">
+            </div>
+        </div>
+        
+        <button class="submit">Valider</button>
+    </div>
+
+    <style>
+        body {
+            display: grid;
+            place-items: center;
+
+            font-family: Arial, Helvetica, sans-serif;
+            background: #333;
+
+            width: 100vw;
+            height: 100vh;
+        }
+
+        :focus { outline: none !important }
+
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            width: 50%; 
+            height: 100%;
+        }
+
+        div.row {
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+
+            margin: 10px;
+            width: auto;
+            height: auto;
+        }
+
+        h1 {
+            text-shadow: 0 0 10px rgba(0, 0, 0, .25);
+            font-size: 25px;
+            color: white;
+
+            margin: 0;
+        }
+
+        p {
+            color: whitesmoke;
+            font-style: italic;
+            font-size: 20px;
+
+            margin: 0;
+        }
+
+        span {
+            color: white;
+            margin: 5px 0;
+        }
+
+        input {
+            transition: .25s;
+
+            border: none;
+
+            margin: 0 10px;
+            padding: 10px;
+        }
+
+        input:hover {
+            transition: .25s;
+
+            box-shadow: 0 0 5px rgba(255, 255, 255, 1.25);
+            border: none;
+        }
+
+        button {
+            transition: .25s;
+
+            background: whitesmoke;
+            border-radius: 2.5px;
+            border: none;
+
+            margin: 10px 0 10px 0;
+            padding: 5px 20px;
+        }
+
+        button:hover {
+            transition: .25s;
+
+            box-shadow: 0 0 10px rgba(255, 255, 255, 1);
+            background: white;
+            cursor: pointer;
+        }
+    </style>
+
+    <script src="./settings.js"></script>
+</body>
+</html>
